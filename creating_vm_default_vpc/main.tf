@@ -1,17 +1,16 @@
-resource "google_compute_instance" "default" {
-  name         = var.instance_name_value
-  machine_type = var.machine_type_value
-  zone         = var.zone_value
+provider "google" {
+  project_id = "niveustraining"
+  region     = "asia-south1"
+}
 
-  boot_disk {
-    initialize_params {
-      image = var.image_value
-    }
-  }
 
-  network_interface {
-    network = "default"
-    subnetwork = "default"
-    access_config {}
-  }
+module "ec2-instance" {
+  source = "./modules/ec2_instances"
+
+  instance_name_value = "m3gan-vm"
+  machine_type_value  = "e2-micro"      # Free-tier eligible
+  zone_value          = "asia-south1-a" # Valid GCP zone
+  image_value         = "ubuntu-minimal-2210-kinetic-amd64-v20230126"
+  project_id          = "niveustraining"
+  region              = "asia-south1"
 }
