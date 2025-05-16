@@ -1,5 +1,5 @@
 provider "google" {
-  project_id = "niveustraining"
+  project = "niveustraining"
   region     = "asia-south1"
 }
 
