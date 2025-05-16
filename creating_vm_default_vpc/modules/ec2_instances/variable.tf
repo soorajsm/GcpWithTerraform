@@ -19,5 +19,6 @@ variable "image_value" {
 }
 
 variable "project_id" {}
+
 variable "region" {}
 
